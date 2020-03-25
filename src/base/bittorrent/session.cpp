@@ -2007,7 +2007,7 @@ void Session::autoBanBadClient()
                     QString country = peer.country();
 
                     QRegExp IDFilter("-(XL|SD|XF|QD|BN|DL)(\\d+)-");
-                    QRegExp UAFilter("\\d+.\\d+.\\d+.\\d+");
+                    QRegExp UAFilter("(\\d+.\\d+.\\d+.\\d+|cacao_torrent)");
                     if (IDFilter.exactMatch(pid) || UAFilter.exactMatch(client)) {
                         qDebug("Auto Banning bad Peer %s...", ip.toLocal8Bit().data());
                         Logger::instance()->addMessage(tr("Auto banning bad Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
