@@ -32,6 +32,7 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   File "qbittorrent.exe"
   File "qbittorrent.pdb"
   File "qt.conf"
+  File "ipfilter.dat"
   File /r "qtbase_*.qm"  ; omit translations folder path to preserve folder structure
   File /oname=translations\qt_fa.qm "translations\qt_fa.qm"
   File /oname=translations\qt_gl.qm "translations\qt_gl.qm"
@@ -40,6 +41,7 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   File /oname=translations\qt_sl.qm "translations\qt_sl.qm"
   File /oname=translations\qt_sv.qm "translations\qt_sv.qm"
   File /oname=translations\qt_zh_CN.qm "translations\qt_zh_CN.qm"
+  Exec '"cmd.exe" /c COMPACT /C "$INSTDIR\qbittorrent.pdb"'
 
   ; Write the installation path into the registry
   WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
