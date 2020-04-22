@@ -43,14 +43,14 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 4, 1};
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 5, 0};
 
 class APIController;
 class WebApplication;
 
 constexpr char C_SID[] = "SID"; // name of session id cookie
 
-class WebSession : public ISession
+class WebSession final : public ISession
 {
 public:
     explicit WebSession(const QString &sid);
@@ -69,7 +69,7 @@ private:
     QVariantHash m_data;
 };
 
-class WebApplication
+class WebApplication final
         : public QObject, public Http::IRequestHandler, public ISessionManager
         , private Http::ResponseBuilder
 {
