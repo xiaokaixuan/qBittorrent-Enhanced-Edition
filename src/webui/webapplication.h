@@ -43,7 +43,7 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 5, 0};
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 5, 1};
 
 class APIController;
 class WebApplication;
@@ -157,4 +157,13 @@ private:
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
     QString m_contentSecurityPolicy;
+
+    // Custom HTTP headers
+    struct CustomHTTPHeader
+    {
+        QString name;
+        QString value;
+    };
+    bool m_useCustomHTTPHeaders;
+    QVector<CustomHTTPHeader> m_customHTTPHeaders;
 };
