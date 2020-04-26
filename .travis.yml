@@ -6,7 +6,7 @@ addons:
   apt:
     sources:
     - sourceline: 'ppa:mhier/libboost-latest'
-    - sourceline: 'ppa:beineri/opt-qt-5.14.1-xenial'
+    - sourceline: 'ppa:beineri/opt-qt-5.14.2-xenial'
     - sourceline: 'ppa:savoury1/backports'
     packages:
     - curl
