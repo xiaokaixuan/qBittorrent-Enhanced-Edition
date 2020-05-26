@@ -373,8 +373,6 @@
                 <textarea id="banned_IPs_textarea" rows="5" cols="70"></textarea>
             </fieldset>
         </div>
-        <input type="checkbox" id="auto_ban_unknown_peer_checkbox" />
-        <label for="auto_ban_unknown_peer_checkbox">QBT_TR(Auto Ban Unknown Client From China)QBT_TR[CONTEXT=OptionsDialog]</label>
     </fieldset>
 </div>
 
@@ -900,6 +898,14 @@
                 </td>
                 <td>
                     <input type="checkbox" id="resolvePeerCountries">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="autoBanUnknownPeer">QBT_TR(Auto Ban Unknown Client From China:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="autoBanUnknownPeer">
                 </td>
             </tr>
         </table>
@@ -1656,7 +1662,6 @@
                         $('ipfilter_text').setProperty('value', pref.ip_filter_path);
                         $('ipfilter_trackers_checkbox').setProperty('checked', pref.ip_filter_trackers);
                         $('banned_IPs_textarea').setProperty('value', pref.banned_IPs);
-                        $('auto_ban_unknown_peer_checkbox').setProperty('checked', pref.auto_ban_unknown_peer);
                         updateFilterSettings();
 
                         // Speed tab
@@ -1795,6 +1800,7 @@
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
+                        $('autoBanUnknownPeer').setProperty('checked', pref.auto_ban_unknown_peer);
                         // libtorrent section
                         $('asyncIOThreads').setProperty('value', pref.async_io_threads);
                         $('filePoolSize').setProperty('value', pref.file_pool_size);
@@ -1965,7 +1971,6 @@
             settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
             settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
             settings.set('banned_IPs', $('banned_IPs_textarea').getProperty('value'));
-            settings.set('auto_ban_unknown_peer', $('auto_ban_unknown_peer_checkbox').getProperty('checked'));
 
             // Speed tab
             // Global Rate Limits
@@ -2170,6 +2175,7 @@
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
+            settings.set('auto_ban_unknown_peer', $('autoBanUnknownPeer').getProperty('checked'));
 
             // libtorrent section
             settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
