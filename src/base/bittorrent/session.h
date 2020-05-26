@@ -473,6 +473,10 @@ namespace BitTorrent
         bool isAutoBanUnknownPeerEnabled() const;
         void setAutoBanUnknownPeer(bool value);
 
+        // Auto ban Bittorrent Media Player Peer
+        bool isAutoBanBTPlayerPeerEnabled() const;
+        void setAutoBanBTPlayerPeer(bool value);
+
         // Trackers list
         bool isAutoUpdateTrackersEnabled() const;
         void setAutoUpdateTrackersEnabled(bool enabled);
@@ -749,6 +753,7 @@ namespace BitTorrent
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
 #endif
         CachedSettingValue<bool> m_autoBanUnknownPeer;
+        CachedSettingValue<bool> m_autoBanBTPlayerPeer;
         CachedSettingValue<bool> m_isAutoUpdateTrackersEnabled;
 
         // Order is important. This needs to be declared after its CachedSettingsValue

@@ -908,6 +908,14 @@
                     <input type="checkbox" id="autoBanUnknownPeer">
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="autoBanBittorrentPlayer">QBT_TR(Auto Ban Bittorrent Media Player:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="autoBanBittorrentPlayer">
+                </td>
+            </tr>
         </table>
     </fieldset>
     <fieldset class="settings">
@@ -1801,6 +1809,7 @@
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
                         $('autoBanUnknownPeer').setProperty('checked', pref.auto_ban_unknown_peer);
+                        $('autoBanBittorrentPlayer').setProperty('checked', pref.auto_ban_bt_player_peer);
                         // libtorrent section
                         $('asyncIOThreads').setProperty('value', pref.async_io_threads);
                         $('filePoolSize').setProperty('value', pref.file_pool_size);
@@ -2176,6 +2185,7 @@
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
             settings.set('auto_ban_unknown_peer', $('autoBanUnknownPeer').getProperty('checked'));
+            settings.set('auto_ban_bt_player_peer', $('autoBanBittorrentPlayer').getProperty('checked'));
 
             // libtorrent section
             settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));

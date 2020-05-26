@@ -126,6 +126,7 @@ namespace
             {"BitTorrent/Session/uTPEnabled", "Preferences/Bittorrent/uTP"},
             {"BitTorrent/Session/uTPRateLimited", "Preferences/Bittorrent/uTP_rate_limited"},
             {"BitTorrent/Session/AutoBanUnknownPeer", "Preferences/Advanced/AutoBanUnknownPeer"},
+            {"BitTorrent/Session/AutoBanBTPlayerPeer", "Preferences/Advanced/AutoBanBTPlayePeer"},
             {"BitTorrent/Session/AutoUpdateTrackersEnabled", "Preferences/Bittorrent/AutoUpdateTrackers"},
             {"BitTorrent/TrackerEnabled", "Preferences/Advanced/trackerEnabled"},
             {"Network/Proxy/OnlyForTorrents", "Preferences/Connection/ProxyOnlyForTorrents"},

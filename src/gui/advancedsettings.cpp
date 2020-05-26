@@ -73,6 +73,7 @@ enum AdvSettingsRows
     CONFIRM_RECHECK_TORRENT,
     RECHECK_COMPLETED,
     CONFIRM_AUTO_BAN,
+    CONFIRM_AUTO_BAN_BT_Player,
     // UI related
     LIST_REFRESH,
     RESOLVE_HOSTS,
@@ -247,6 +248,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // Auto ban Unknown Peer
     session->setAutoBanUnknownPeer(m_autoBanUnknownPeer.isChecked());
+    // Auto ban Bittorrent Media Player Peer
+    session->setAutoBanBTPlayerPeer(m_autoBanBTPlayerPeer.isChecked());
 
     // Program notification
     MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
@@ -545,6 +548,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Auto Ban Unknown Peer from China
     m_autoBanUnknownPeer.setChecked(session->isAutoBanUnknownPeerEnabled());
     addRow(CONFIRM_AUTO_BAN, tr("Auto Ban Unknown Peer from China"), &m_autoBanUnknownPeer);
+    // Auto Ban Bittorrent Media Player Peer
+    m_autoBanBTPlayerPeer.setChecked(session->isAutoBanBTPlayerPeerEnabled());
+    addRow(CONFIRM_AUTO_BAN_BT_Player, tr("Auto Ban Bittorrent Media Player Peer"), &m_autoBanBTPlayerPeer);
     addRow(STOP_TRACKER_TIMEOUT, (tr("Stop tracker timeout") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout", "(?)"))
            , &m_spinBoxStopTrackerTimeout);
 
