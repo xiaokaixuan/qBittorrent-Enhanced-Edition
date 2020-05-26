@@ -128,6 +128,7 @@ namespace
             {"BitTorrent/Session/AutoBanUnknownPeer", "Preferences/Advanced/AutoBanUnknownPeer"},
             {"BitTorrent/Session/AutoBanBTPlayerPeer", "Preferences/Advanced/AutoBanBTPlayePeer"},
             {"BitTorrent/Session/AutoUpdateTrackersEnabled", "Preferences/Bittorrent/AutoUpdateTrackers"},
+            {"BitTorrent/Session/PublicTrackersList", "Preferences/Bittorrent/PublicTrackersList"},
             {"BitTorrent/TrackerEnabled", "Preferences/Advanced/trackerEnabled"},
             {"Network/Proxy/OnlyForTorrents", "Preferences/Connection/ProxyOnlyForTorrents"},
             {"Network/Proxy/Type", "Preferences/Connection/ProxyType"},
