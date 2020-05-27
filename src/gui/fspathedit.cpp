@@ -38,6 +38,7 @@
 
 #include "base/utils/fs.h"
 #include "fspathedit_p.h"
+#include <stdexcept>
 
 namespace
 {
