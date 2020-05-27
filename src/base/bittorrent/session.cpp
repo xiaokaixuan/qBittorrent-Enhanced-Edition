@@ -341,6 +341,7 @@ Session::Session(QObject *parent)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
     , m_autoBanUnknownPeer(BITTORRENT_SESSION_KEY("AutoBanUnknownPeer"), false)
+    , m_autoBanBTPlayerPeer(BITTORRENT_SESSION_KEY("AutoBanBTPlayerPeer"), false)
     , m_showTrackerAuthWindow(BITTORRENT_SESSION_KEY("ShowTrackerAuthWindow"), true)
     , m_port(BITTORRENT_SESSION_KEY("Port"), 8999)
     , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
@@ -1991,9 +1992,11 @@ void Session::eraseIPFilter()
 
 void Session::autoBanBadClient()
 {
-    const BitTorrent::SessionStatus tStatus = BitTorrent::Session::instance()->status();
+    const auto *session = BitTorrent::Session::instance();
+    const BitTorrent::SessionStatus tStatus = session->status();
     if (tStatus.peersCount > 0) {
-        bool m_AutoBan = BitTorrent::Session::instance()->isAutoBanUnknownPeerEnabled();
+        bool m_AutoBanUnknown = session->isAutoBanUnknownPeerEnabled();
+        bool m_AutoBanPlayer = session->isAutoBanBTPlayerPeerEnabled();
         foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents()) {
             if (!torrent->isPrivate()) {
                 QList<BitTorrent::PeerInfo> peers = torrent->peers();
@@ -2016,7 +2019,7 @@ void Session::autoBanBadClient()
                         continue;
                     }
 
-                    if(m_AutoBan) {
+                    if(m_AutoBanUnknown) {
                         if (client.contains("Unknown") && country == "CN") {
                             qDebug("Auto Banning Unknown Peer %s...", ip.toLocal8Bit().data());
                             Logger::instance()->addMessage(tr("Auto banning Unknown Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
@@ -2026,6 +2029,15 @@ void Session::autoBanBadClient()
                         if (port >= 65000 && country == "CN" && client.contains("Transmission")) {
                             qDebug("Auto Banning Offline Downloader %s...", ip.toLocal8Bit().data());
                             Logger::instance()->addMessage(tr("Auto banning Offline Downloader '%1:%2'...'%3'...'%4'...'%5'").arg(ip).arg(port).arg(pid).arg(ptoc).arg(country));
+                            tempblockIP(ip);
+                            continue;
+                        }
+                    }
+                    if(m_AutoBanPlayer) {
+                        QRegExp PlayerFilter("-(UW\\w{4})-");
+                        if (PlayerFilter.exactMatch(pid)) {
+                            qDebug("Auto Banning BitTorrent Media Player Peer %s...", ip.toLocal8Bit().data());
+                            Logger::instance()->addMessage(tr("Auto banning BitTorrent Media Player Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                             tempblockIP(ip);
                         }
                     }
@@ -2950,6 +2962,18 @@ void Session::setAutoBanUnknownPeer(bool value)
 {
     if (value != isAutoBanUnknownPeerEnabled()) {
         m_autoBanUnknownPeer = value;
+    }
+}
+
+bool Session::isAutoBanBTPlayerPeerEnabled() const
+{
+    return m_autoBanBTPlayerPeer;
+}
+
+void Session::setAutoBanBTPlayerPeer(bool value)
+{
+    if (value != isAutoBanBTPlayerPeerEnabled()) {
+        m_autoBanBTPlayerPeer = value;
     }
 }
 

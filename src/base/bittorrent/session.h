@@ -345,6 +345,8 @@ namespace BitTorrent
         void setSaveResumeDataInterval(uint value);
         bool isAutoBanUnknownPeerEnabled() const;
         void setAutoBanUnknownPeer(bool value);
+        bool isAutoBanBTPlayerPeerEnabled() const;
+        void setAutoBanBTPlayerPeer(bool value);
         bool isShowTrackerAuthWindow() const;
         void setShowTrackerAuthWindow(bool value);
         int port() const;
@@ -752,6 +754,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
         CachedSettingValue<uint> m_saveResumeDataInterval;
         CachedSettingValue<bool> m_autoBanUnknownPeer;
+        CachedSettingValue<bool> m_autoBanBTPlayerPeer;
         CachedSettingValue<bool> m_showTrackerAuthWindow;
         CachedSettingValue<int> m_port;
         CachedSettingValue<bool> m_useRandomPort;

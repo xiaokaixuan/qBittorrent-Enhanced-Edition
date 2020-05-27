@@ -1100,6 +1100,16 @@ void Preferences::setAutoBanUnknownPeer(const bool checked)
     setValue("Preferences/Advanced/AutoBanUnknownPeer", checked);
 }
 
+bool Preferences::getAutoBanBTPlayerPeer() const
+{
+    return value("Preferences/Advanced/AutoBanBTPlayerPeer", false).toBool();
+}
+
+void Preferences::setAutoBanBTPlayerPeer(const bool checked)
+{
+    setValue("Preferences/Advanced/AutoBanBTPlayerPeer", checked);
+}
+
 bool Preferences::getShowTrackerAuthWindow() const
 {
     return value("Preferences/Advanced/ShowTrackerAuthWindow", true).toBool();

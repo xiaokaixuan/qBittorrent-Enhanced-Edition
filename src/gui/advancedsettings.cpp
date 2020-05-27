@@ -61,6 +61,7 @@ enum AdvSettingsRows
     // behavior
     SAVE_RESUME_DATA_INTERVAL,
     CONFIRM_AUTO_BAN,
+    CONFIRM_AUTO_BAN_BT_Player,
     SHOW_TRACKER_AUTH_WINDOW,
     CONFIRM_RECHECK_TORRENT,
     RECHECK_COMPLETED,
@@ -219,6 +220,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setAnnounceIP(addr.isNull() ? "" : addr.toString());
     // Auto ban Unknown Peer
     session->setAutoBanUnknownPeer(cb_auto_ban_unknown_peer.isChecked());
+    // Auto ban Bittorrent Media Player Peer
+    session->setAutoBanBTPlayerPeer(cb_auto_ban_bt_media_player_peer.isChecked());
     // Show Tracker Authenticaion Window
     session->setShowTrackerAuthWindow(cb_show_tracker_auth_window.isChecked());
 
@@ -474,6 +477,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Auto Ban Unknown Peer from China
     cb_auto_ban_unknown_peer.setChecked(session->isAutoBanUnknownPeerEnabled());
     addRow(CONFIRM_AUTO_BAN, tr("Auto Ban Unknown Peer from China"), &cb_auto_ban_unknown_peer);
+    // Auto Ban Bittorrent Media Player Peer
+    cb_auto_ban_bt_media_player_peer.setChecked(session->isAutoBanBTPlayerPeerEnabled());
+    addRow(CONFIRM_AUTO_BAN_BT_Player, tr("Auto Ban Bittorrent Media Player Peer"), &cb_auto_ban_bt_media_player_peer);
     // Show Tracker Authenticaion Window
     cb_show_tracker_auth_window.setChecked(session->isShowTrackerAuthWindow());
     addRow(SHOW_TRACKER_AUTH_WINDOW, tr("Show Tracker Authenticaion Window"), &cb_show_tracker_auth_window);

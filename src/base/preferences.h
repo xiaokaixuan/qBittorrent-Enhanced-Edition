@@ -302,6 +302,8 @@ public:
 #endif // Q_OS_MAC
     bool getAutoBanUnknownPeer() const;
     void setAutoBanUnknownPeer(const bool checked);
+    bool getAutoBanBTPlayerPeer() const;
+    void setAutoBanBTPlayerPeer(const bool checked);
     bool getShowTrackerAuthWindow() const;
     void setShowTrackerAuthWindow(const bool checked);
     QString customizeTrackersListUrl() const;
