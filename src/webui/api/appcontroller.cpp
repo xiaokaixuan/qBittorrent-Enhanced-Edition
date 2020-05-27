@@ -405,7 +405,7 @@ void AppController::setPreferencesAction()
     if (m.contains("ip_filter_trackers"))
         session->setTrackerFilteringEnabled(m["ip_filter_trackers"].toBool());
     if (m.contains("banned_IPs"))
-        session->setBannedIPs(m["banned_IPs"].toString().split('\n'));
+        session->setBannedIPs(m["banned_IPs"].toString().split('\n', QString::SkipEmptyParts));
     if (m.contains("auto_ban_unknown_peer"))
         session->setAutoBanUnknownPeer(m["auto_ban_unknown_peer"].toBool());
     if (m.contains("auto_ban_bt_player_peer"))
