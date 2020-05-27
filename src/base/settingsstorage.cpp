@@ -106,6 +106,7 @@ namespace
             {"BitTorrent/Session/AddTrackersEnabled", "Preferences/Bittorrent/AddTrackers"},
             {"BitTorrent/Session/AdditionalTrackers", "Preferences/Bittorrent/TrackersList"},
             {"BitTorrent/Session/AutoUpdateTrackersEnabled", "Preferences/Bittorrent/AutoUpdateTrackers"},
+            {"BitTorrent/Session/PublicTrackersList", "Preferences/Bittorrent/PublicTrackersList"},
             {"BitTorrent/Session/IPFilteringEnabled", "Preferences/IPFilter/Enabled"},
             {"BitTorrent/Session/TrackerFilteringEnabled", "Preferences/IPFilter/FilterTracker"},
             {"BitTorrent/Session/IPFilter", "Preferences/IPFilter/File"},

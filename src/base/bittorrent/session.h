@@ -480,7 +480,7 @@ namespace BitTorrent
         bool m_isActive = false;
         QQueue<QString> q_bannedIPs;
         QQueue<int64_t> q_unbanTime;
-        QString m_publicTrackers;
+        CachedSettingValue<QString> m_publicTrackers;
         QTimer *m_unbanTimer;
         QTimer *m_banTimer;
         QTimer *m_updateTimer;
