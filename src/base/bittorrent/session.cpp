@@ -2051,8 +2051,8 @@ void Session::updatePublicTracker()
 {
     Preferences *const pref = Preferences::instance();
     Net::DownloadHandler *handler = Net::DownloadManager::instance()->download({pref->customizeTrackersListUrl()});
-    connect(handler, SIGNAL(downloadFinished(QString,QByteArray)), SLOT(txtDownloadFinished(QString,QByteArray)));
-    connect(handler, SIGNAL(downloadFailed(QString,QString)), SLOT(txtDownloadFailed(QString,QString)));
+    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished), this, &Session::txtDownloadFinished);
+    connect(handler, &Net::DownloadHandler::downloadFailed, this, &Session::txtDownloadFailed);
 }
 
 void Session::txtDownloadFinished(const QString &url, const QByteArray &data)
