@@ -590,6 +590,7 @@ Session::Session(QObject *parent)
 
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
+    populatePublicTrackers();
 
     enableTracker(isTrackerEnabled());
 
@@ -1046,8 +1047,7 @@ void Session::setAutoUpdateTrackersEnabled(bool enabled)
         m_updateTimer->stop();
     } else {
         m_updateTimer->start();
-        if (m_publicTrackers == "")
-            updatePublicTracker();
+        updatePublicTracker();
     }
 }
 
