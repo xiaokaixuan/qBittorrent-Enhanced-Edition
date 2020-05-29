@@ -106,6 +106,9 @@ private slots:
     void on_btnWebUiKey_clicked();
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &localeStr);
+    void on_fetchButton_clicked();
+    void handlePublicTrackersListDownloadFinished(const QString &url, const QByteArray &data);
+    void handlePublicTrackersListDownloadFailed(const QString &url, const QString &error);
 
 private:
     // Methods

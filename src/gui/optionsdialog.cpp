@@ -50,6 +50,7 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/dnsupdater.h"
+#include "base/net/downloadhandler.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
@@ -1786,4 +1787,28 @@ void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
     // call dialog window
     if (IPSubnetWhitelistOptionsDialog(this).exec() == QDialog::Accepted)
         enableApplyButton();
+}
+
+void OptionsDialog::on_fetchButton_clicked()
+{
+    Net::DownloadHandler *m_fetchHandler = Net::DownloadManager::instance()->download(Preferences::instance()->customizeTrackersListUrl());
+    connect(m_fetchHandler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished), this, &OptionsDialog::handlePublicTrackersListDownloadFinished);
+    connect(m_fetchHandler, &Net::DownloadHandler::downloadFailed, this, &OptionsDialog::handlePublicTrackersListDownloadFailed);
+}
+
+void OptionsDialog::handlePublicTrackersListDownloadFinished(const QString &url, const QByteArray &data)
+{
+    Q_UNUSED(url);
+
+    BitTorrent::Session::instance()->setPublicTrackers(QString::fromUtf8(data.data()));
+    m_ui->textPublicTrackers->setPlainText(QString::fromUtf8(data.data()));
+    m_ui->fetchButton->setEnabled(false);
+    m_ui->fetchButton->setText("Fetched!");
+}
+
+void OptionsDialog::handlePublicTrackersListDownloadFailed(const QString &url, const QString &error)
+{
+    Q_UNUSED(url);
+
+    m_ui->textPublicTrackers->setPlainText("Refetch failed. Reason: " + error);
 }
