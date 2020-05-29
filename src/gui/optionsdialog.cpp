@@ -45,6 +45,7 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/dnsupdater.h"
+#include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
@@ -1823,4 +1824,24 @@ void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, &OptionsDialog::enableApplyButton);
     dialog->open();
+}
+
+void OptionsDialog::on_fetchButton_clicked()
+{
+    Net::DownloadHandler *m_fetchHandler = Net::DownloadManager::instance()->download(Preferences::instance()->customizeTrackersListUrl());
+    connect(m_fetchHandler, &Net::DownloadHandler::finished, this, &OptionsDialog::handlePublicTrackersListChanged);
+}
+
+void OptionsDialog::handlePublicTrackersListChanged(const Net::DownloadResult &result)
+{
+    switch (result.status) {
+    case Net::DownloadStatus::Success:
+        BitTorrent::Session::instance()->setPublicTrackers(QString::fromUtf8(result.data.data()));
+        m_ui->textPublicTrackers->setPlainText(QString::fromUtf8(result.data.data()));
+        m_ui->fetchButton->setEnabled(false);
+        m_ui->fetchButton->setText("Fetched!");
+        break;
+    default:
+        m_ui->textPublicTrackers->setPlainText("Refetch failed. Reason: " + result.errorString);
+    }
 }

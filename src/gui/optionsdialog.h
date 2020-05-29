@@ -30,6 +30,7 @@
 #define OPTIONSDIALOG_H
 
 #include <QDialog>
+#include "base/net/downloadmanager.h"
 
 class QAbstractButton;
 class QCloseEvent;
@@ -111,6 +112,8 @@ private slots:
     void setLocale(const QString &localeStr);
     void webUIHttpsCertChanged(const QString &path, ShowError showError);
     void webUIHttpsKeyChanged(const QString &path, ShowError showError);
+    void on_fetchButton_clicked();
+    void handlePublicTrackersListChanged(const Net::DownloadResult &result);
 
 private:
     // Methods
