@@ -28,9 +28,11 @@ PeerID: `-qB419[A-Z]-`, example: `-qB419F-`
 
 6. Show Tracker Authentication Window(Default: ON)
 
-7. Auto Update Public Trackers List(Default: OFF)**
+7. Auto Update Public Trackers List(Default: OFF)
 
 8. Multiple qBittorrent instances
+
+9. Auto Ban BitTorrent Media Player Peer Option(Default: OFF)
 ********************************
 ### Description:
 qBittorrent is a bittorrent client programmed in C++ / Qt that uses
