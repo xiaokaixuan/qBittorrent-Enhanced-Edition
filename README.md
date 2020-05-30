@@ -24,11 +24,9 @@ PeerID: `-qB421[A-Z]-`, example: `-qB421A-`
 
 4. _Auto Ban Unknown Peer from China_ Option(Default: OFF)
 
-5. Show Tracker Authentication Window(Default: ON)
+5. Auto Update Public Trackers List(Default: OFF)
 
-6. Auto Update Public Trackers List(Default: OFF)**
-
-7. Multiple qBittorrent instances
+6. Auto Ban BitTorrent Media Player Peer Option(Default: OFF)
 ********************************
 ### Description:
 qBittorrent is a bittorrent client programmed in C++ / Qt that uses
