@@ -9,7 +9,7 @@ SetCompressorDictSize 64
 XPStyle on
 
 ;Uncomment when packaging 64bit qbittorrent
-;!define APP64BIT
+!define APP64BIT
 
 !include "MUI.nsh"
 !include "UAC.nsh"
@@ -28,7 +28,7 @@ XPStyle on
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
 ; Program specific
-!define PROG_VERSION "4.2.5.10"
+!define PROG_VERSION "4.2.5.13"
 
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun
