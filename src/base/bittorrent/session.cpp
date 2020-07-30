@@ -2226,6 +2226,10 @@ void Session::autoBanBadClient()
                     QRegExp IDFilter("-(XL|SD|XF|QD|BN|DL)(\\d+)-");
                     QRegExp UAFilter("(\\d+.\\d+.\\d+.\\d+|cacao_torrent)");
                     if (IDFilter.exactMatch(pid) || UAFilter.exactMatch(client)) {
+                        bool isBanned = BitTorrent::Session::instance()->checkAccessFlags(ip);
+                        if (isBanned) {
+                            continue;
+                        }
                         qDebug("Auto Banning bad Peer %s...", ip.toLocal8Bit().data());
                         Logger::instance()->addMessage(tr("Auto banning bad Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                         tempblockIP(ip);
@@ -2234,21 +2238,35 @@ void Session::autoBanBadClient()
 
                     if(m_AutoBanUnknown) {
                         if (client.contains("Unknown") && country == "CN") {
+                            bool isBanned = BitTorrent::Session::instance()->checkAccessFlags(ip);
+                            if (isBanned) {
+                                continue;
+                            }
                             qDebug("Auto Banning Unknown Peer %s...", ip.toLocal8Bit().data());
                             Logger::instance()->addMessage(tr("Auto banning Unknown Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                             tempblockIP(ip);
                             continue;
                         }
+
                         if (port >= 65000 && country == "CN" && client.contains("Transmission")) {
+                            bool isBanned = BitTorrent::Session::instance()->checkAccessFlags(ip);
+                            if (isBanned) {
+                                continue;
+                            }
                             qDebug("Auto Banning Offline Downloader %s...", ip.toLocal8Bit().data());
                             Logger::instance()->addMessage(tr("Auto banning Offline Downloader '%1:%2'...'%3'...'%4'...'%5'").arg(ip).arg(port).arg(pid).arg(ptoc).arg(country));
                             tempblockIP(ip);
                             continue;
                         }
                     }
+
                     if(m_AutoBanPlayer) {
                         QRegExp PlayerFilter("-(UW\\w{4})-");
                         if (PlayerFilter.exactMatch(pid)) {
+                            bool isBanned = BitTorrent::Session::instance()->checkAccessFlags(ip);
+                            if (isBanned) {
+                                continue;
+                            }
                             qDebug("Auto Banning BitTorrent Media Player Peer %s...", ip.toLocal8Bit().data());
                             Logger::instance()->addMessage(tr("Auto banning BitTorrent Media Player Peer '%1'...'%2'...'%3'...'%4'").arg(ip).arg(pid).arg(ptoc).arg(country));
                             tempblockIP(ip);
