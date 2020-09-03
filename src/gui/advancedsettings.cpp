@@ -120,6 +120,9 @@ enum AdvSettingsRows
     ANNOUNCE_ALL_TRACKERS,
     ANNOUNCE_ALL_TIERS,
     ANNOUNCE_IP,
+#if (LIBTORRENT_VERSION_NUM >= 10207)
+    MAX_CONCURRENT_HTTP_ANNOUNCES,
+#endif
     STOP_TRACKER_TIMEOUT,
 
     ROW_COUNT
@@ -244,6 +247,10 @@ void AdvancedSettings::saveAdvancedSettings()
     // Construct a QHostAddress to filter malformed strings
     const QHostAddress addr(m_lineEditAnnounceIP.text().trimmed());
     session->setAnnounceIP(addr.toString());
+#if (LIBTORRENT_VERSION_NUM >= 10207)
+    // Max concurrent HTTP announces
+    session->setMaxConcurrentHTTPAnnounces(m_spinBoxMaxConcurrentHTTPAnnounces.value());
+#endif
     // Stop tracker timeout
     session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // Auto ban Unknown Peer
@@ -551,6 +558,13 @@ void AdvancedSettings::loadAdvancedSettings()
     // Auto Ban Bittorrent Media Player Peer
     m_autoBanBTPlayerPeer.setChecked(session->isAutoBanBTPlayerPeerEnabled());
     addRow(CONFIRM_AUTO_BAN_BT_Player, tr("Auto Ban Bittorrent Media Player Peer"), &m_autoBanBTPlayerPeer);
+#if (LIBTORRENT_VERSION_NUM >= 10207)
+    // Max concurrent HTTP announces
+    m_spinBoxMaxConcurrentHTTPAnnounces.setValue(session->maxConcurrentHTTPAnnounces());
+    addRow(MAX_CONCURRENT_HTTP_ANNOUNCES, (tr("Max concurrent HTTP announces") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces", "(?)"))
+           , &m_spinBoxMaxConcurrentHTTPAnnounces);
+#endif
+    // Stop tracker timeout
     addRow(STOP_TRACKER_TIMEOUT, (tr("Stop tracker timeout") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout", "(?)"))
            , &m_spinBoxStopTrackerTimeout);
 
