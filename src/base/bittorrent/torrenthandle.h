@@ -288,6 +288,7 @@ namespace BitTorrent
         virtual void addUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
         virtual void removeUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
+        virtual void enableIPFilter() const = 0;
 
         virtual QString createMagnetURI() const = 0;
 
