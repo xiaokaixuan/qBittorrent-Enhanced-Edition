@@ -18,10 +18,11 @@ addons:
     - file
     - libgl1-mesa-dev
     - libegl1-mesa-dev
+    - libdbus-1-dev
     - zlib1g-dev
     - libssl-dev
     - libtool
-    - libboost1.73-dev
+    - libboost1.74-dev
     - python3-semantic-version
     - python3-lxml
     - python3-requests
