@@ -560,6 +560,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(CONFIRM_AUTO_BAN_BT_Player, tr("Auto Ban Bittorrent Media Player Peer"), &m_autoBanBTPlayerPeer);
 #if (LIBTORRENT_VERSION_NUM >= 10207)
     // Max concurrent HTTP announces
+    m_spinBoxMaxConcurrentHTTPAnnounces.setMaximum(200);
     m_spinBoxMaxConcurrentHTTPAnnounces.setValue(session->maxConcurrentHTTPAnnounces());
     addRow(MAX_CONCURRENT_HTTP_ANNOUNCES, (tr("Max concurrent HTTP announces") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces", "(?)"))
            , &m_spinBoxMaxConcurrentHTTPAnnounces);
