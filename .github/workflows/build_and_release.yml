@@ -95,7 +95,7 @@ jobs:
   # Inspired by https://github.com/userdocs/qbittorrent-nox-static/blob/master/qbittorrent-nox-static-musl.sh
   nox-static:
     runs-on: ubuntu-latest
-    container: "alpine:edge"
+    container: "alpine:latest"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
