@@ -3,7 +3,7 @@ qBittorrent Enhanced Edition
 # Note
 ### To user:
 
-Please do not use this modification bittorrent client for Private Trackers, you will get banned. 
+Please do not use this modification bittorrent client for Private Trackers, you will get banned.
 
 ### To tracker operator:
 
@@ -15,7 +15,7 @@ User agent: `qBittorrent Enhanced/LATEST_RELEASE_VERSION`, example: `qBittorrent
 
 PeerID: `-qB421[A-Z]-`, example: `-qB421A-`
 ********************************
-# Features: 
+# Features:
 1. Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader
 
 2. [Temporary IP Filter API for advanced user](https://github.com/c0re100/qBittorrent-EE-API)
@@ -55,30 +55,30 @@ If you are using a desktop Linux distribution without any special demands, you c
 
 Latest AppImage download: [qBittorrent-Enhanced-Edition.AppImage](https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/latest/download/qBittorrent-Enhanced-Edition.AppImage)
 
-### Arch Linux (Maintainer: [c0re100](https://github.com/c0re100))
+#### Arch Linux (Maintainer: [c0re100](https://github.com/c0re100))
 
 [AUR](https://aur.archlinux.org/packages/qbittorrent-enhanced-git/)
 
 [nox AUR](https://aur.archlinux.org/packages/qbittorrent-enhanced-nox-git/)
 
-### Debian (Maintainer: [yangfl](https://github.com/yangfl))
+#### Debian (Maintainer: [Kolcha](https://github.com/Kolcha))
 
-[repo](https://repo.debiancn.org/pool/main/q/qbittorrent-enhanced/)
+[repo](https://software.opensuse.org//download.html?project=home%3Anikoneko%3Aqbittorrent-nightly&package=qbittorrent-enhanced)
 
-### openSUSE/RPM-based Linux distro (Maintainer: [PhoenixEmik](https://github.com/PhoenixEmik))
+#### openSUSE/RPM-based Linux distro (Maintainer: [PhoenixEmik](https://github.com/PhoenixEmik))
 
 [openSUSE repo](https://build.opensuse.org/package/show/home:PhoenixEmik/qbittorrent-enhanced-edition)
 
-### Ubuntu (Maintainer: [poplite](https://github.com/poplite))
+#### Ubuntu (Maintainer: [poplite](https://github.com/poplite))
 
 [PPA](https://launchpad.net/~poplite/+archive/ubuntu/qbittorrent-enhanced)
 
-### macOS (Homebrew) (Maintainer: [AlexaraWu](https://github.com/AlexaraWu))
+#### macOS (Homebrew) (Maintainer: [AlexaraWu](https://github.com/AlexaraWu))
 ```
 brew cask install c0re100-qbittorrent
 ```
 
-### Windows (Chocolatey) (Maintainer: [iYato](https://github.com/iYato))
+#### Windows (Chocolatey) (Maintainer: [iYato](https://github.com/iYato))
 
 ```
 choco install qbittorrent-enhanced
@@ -97,6 +97,6 @@ http://forum.qbittorrent.org
 Please report any bug (or feature request) to:
 http://bugs.qbittorrent.org
 
-For extra features bug(such as Auto Ban, API, Auto Update Tracker lists...), please report to: 
+For extra features bug(such as Auto Ban, API, Auto Update Tracker lists...), please report to:
 https://github.com/c0re100/qBittorrent-Enhanced-Edition/issues
 
