@@ -117,9 +117,12 @@ jobs:
             zlib-dev \
             zlib-static
       - name: build nox-static
+        env:
+          # Use qt version match this prefix. Valid value format: x, x.y, x.y.z
+          QT_VER_PREFIX: "5"
         run: |
           export CXXFLAGS="-std=c++14"
-          qt_tag="$(wget -qO- https://api.github.com/repos/qt/qtbase/tags | jq -r '.[0].name')"
+          qt_tag="$(wget -qO- https://api.github.com/repos/qt/qtbase/tags | jq -r "[.[].name | select(test(\"^v${QT_VER_PREFIX}(\\\.\\\d+)*$\"))] | max")"
           [ -d /tmp/qtbase/ ] || \
             git clone --branch "${qt_tag}" --recursive -j$(nproc) --depth 1 https://github.com/qt/qtbase.git "/tmp/qtbase"
           cd /tmp/qtbase
@@ -210,6 +213,8 @@ jobs:
             linux-headers
       - name: cross compile nox-static
         env:
+          # Use qt version match this prefix. Valid value format: x, x.y, x.y.z
+          QT_VER_PREFIX: "5"
           CROSS_HOST: "${{ matrix.cross_host }}"
           OPENSSL_COMPILER: "${{ matrix.openssl_compiler }}"
           QT_DEVICE: "${{matrix.qt_device}}"
@@ -238,7 +243,7 @@ jobs:
           ./bootstrap.sh
           sed -i "s/using gcc.*/using gcc : cross : ${CROSS_HOST}-g++ ;/" project-config.jam
           ./b2 install --prefix="${CROSS_PREFIX}" --with-system toolset=gcc-cross variant=release link=static runtime-link=static
-          qt_tag="$(wget -qO- https://api.github.com/repos/qt/qtbase/tags | jq -r '.[0].name')"
+          qt_tag="$(wget -qO- https://api.github.com/repos/qt/qtbase/tags | jq -r "[.[].name | select(test(\"^v${QT_VER_PREFIX}(\\\.\\\d+)*$\"))] | max")"
           [ -d /usr/src/qtbase/ ] || \
             git clone --branch "${qt_tag}" --recursive -j$(nproc) --depth 1 https://github.com/qt/qtbase.git "/usr/src/qtbase"
           cd /usr/src/qtbase
