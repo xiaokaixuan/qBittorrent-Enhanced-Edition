@@ -3,7 +3,7 @@ qBittorrent Enhanced Edition
 [Important Note for user and tracker operators](NOTE.md)
 ********************************
 # Features:
-1. Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader
+1. ~~Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader~~ **Merge to 4**
 
 2. [Temporary IP Filter API for advanced user](https://github.com/c0re100/qBittorrent-EE-API)
 
