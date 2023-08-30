@@ -1544,8 +1544,8 @@ void SessionImpl::initializeNativeSession()
     // Enhanced features
     const Path peersDbPath = specialFolderLocation(SpecialFolder::Data) / Path(u"peers.db"_qs);
     db_connection::instance().init(peersDbPath.toString());
-    m_nativeSession->add_extension(&create_drop_bad_peers_plugin);
     if (isAutoBanUnknownPeerEnabled()) {
+        m_nativeSession->add_extension(&create_drop_bad_peers_plugin);
         m_nativeSession->add_extension(&create_drop_unknown_peers_plugin);
         m_nativeSession->add_extension(&create_drop_offline_downloader_plugin);
     }
