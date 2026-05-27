@@ -2881,7 +2881,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     return filteredRows;
                 }
 
-                return this.#filterNodes(root.children[0], this.filterTerms);
+                return root.children.flatMap(node => this.#filterNodes(node, this.filterTerms));
             })();
 
             this.prevFilterTerms = this.filterTerms;
