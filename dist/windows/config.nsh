@@ -38,12 +38,23 @@
 ; QBT_CPU_ARCH (x64 or arm64)
 !define /ifndef QBT_CPU_ARCH "x64"
 
-!ifndef QBT_INSTALLER_WINDOWNAME | QBT_INSTALLER_FILENAME
-  ; The name of the installer
-  !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} ${QBT_CPU_ARCH}"
+; Libtorrent Experimental
+;!define LT_EXP_BUILD "LT2.1"
 
-  ; The file to write
-  !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_${QBT_CPU_ARCH}"
+!ifndef QBT_INSTALLER_WINDOWNAME | QBT_INSTALLER_FILENAME
+  !ifdef LT_EXP_BUILD
+    ; The name of the installer
+    !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} ${QBT_CPU_ARCH} ${LT_EXP_BUILD}"
+
+    ; The file to write
+    !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_${QBT_CPU_ARCH}_${LT_EXP_BUILD}"
+  !else
+    ; The name of the installer
+    !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} ${QBT_CPU_ARCH} "
+
+    ; The file to write
+    !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_${QBT_CPU_ARCH}"
+  !endif
 !endif
 
 !define /ifndef QBT_DIST_DIR "qBittorrent"
