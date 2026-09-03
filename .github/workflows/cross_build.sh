@@ -53,7 +53,7 @@ apt install -y \
   pkg-config \
   pipx \
   python3-pip \
-  libglib2.0-0t64
+  libglib2.0-0t64 bzip2
 
 # use zlib-ng instead of zlib by default
 USE_ZLIB_NG=${USE_ZLIB_NG:-1}

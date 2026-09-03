@@ -1806,8 +1806,8 @@ void SessionImpl::initializeNativeSession()
     LogMsg(tr("Distributed Hash Table (DHT) support: %1").arg(isDHTEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
     LogMsg(tr("Local Peer Discovery support: %1").arg(isLSDEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
     // Enhanced features
-    m_nativeSession->add_extension(&create_drop_bad_peers_plugin);
     if (isAutoBanUnknownPeerEnabled()) {
+        m_nativeSession->add_extension(&create_drop_bad_peers_plugin);
         m_nativeSession->add_extension(&create_drop_unknown_peers_plugin);
         m_nativeSession->add_extension(&create_drop_offline_downloader_plugin);
     }
